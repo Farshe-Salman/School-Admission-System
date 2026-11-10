@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SchoolAdmission.Business.Interfaces.Repositories;
 
@@ -24,13 +25,18 @@ public class ExpiredHoldCleanupService : BackgroundService
         CancellationToken stoppingToken)
     {
         using var timer = new PeriodicTimer(
-            TimeSpan.FromSeconds(5));
+            TimeSpan.FromSeconds(30));
 
         while (!stoppingToken.IsCancellationRequested)
         {
             try
             {
                 await ExpireHoldsAsync(stoppingToken);
+            }
+            catch (OperationCanceledException)
+                when (stoppingToken.IsCancellationRequested)
+            {
+                break;
             }
             catch (Exception ex)
             {
@@ -63,8 +69,8 @@ public class ExpiredHoldCleanupService : BackgroundService
 
         await holdRepository.ExpireAllPendingHoldsAsync(nowUtc);
 
-        _logger.LogInformation(
-            "Expired pending holds at {TimeUtc}.",
+        _logger.LogDebug(
+            "Expired hold cleanup completed at {TimeUtc}.",
             nowUtc);
     }
 }

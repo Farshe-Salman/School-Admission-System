@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using SchoolAdmission.Business.Exceptions;
+using Microsoft.EntityFrameworkCore;
+using Npgsql;
 
 namespace SchoolAdmission.API.Middleware;
 
@@ -40,6 +42,15 @@ public class GlobalExceptionHandler : IExceptionHandler
             (StatusCodes.Status409Conflict,
             "Request Conflict",
             ex.Message),
+
+            DbUpdateException ex
+    when ex.GetBaseException() is PostgresException pgEx
+         && pgEx.SqlState == PostgresErrorCodes.UniqueViolation =>
+    (
+        StatusCodes.Status409Conflict,
+        "Request Conflict",
+        "You already have an active application. You cannot apply for another class."
+    ),
 
             _ =>
                 (StatusCodes.Status500InternalServerError,

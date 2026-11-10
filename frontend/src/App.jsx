@@ -1,122 +1,97 @@
+
 import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
+import Layout from './components/layout/Layout'
+import Dashboard from './pages/Dashboard'
+import Admissions from './pages/Admissions'
+import MyApplications from './pages/MyApplications'
+import ManageClasses from './pages/ManageClasses'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+    // Restore the last visited page after browser refresh.
+    const [activePage, setActivePage] = useState(
+        () => localStorage.getItem('activePage') || 'Overview'
+    )
 
-  return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
+    // Restore the student's Birth Registration Number.
+    const [studentId, setStudentId] = useState(
+        () => localStorage.getItem('studentId') || ''
+    )
+
+    // Restore student portal session.
+    const [studentAuthenticated, setStudentAuthenticated] = useState(
+        () => localStorage.getItem('studentPortalAuthenticated') === 'true'
+    )
+
+    // Centralized navigation.
+    const handleNavigate = (page) => {
+        setActivePage(page)
+        localStorage.setItem('activePage', page)
+    }
+
+    // Update and persist student identity.
+    const handleStudentIdChange = (value) => {
+        setStudentId(value)
+
+        if (value.trim()) {
+            localStorage.setItem('studentId', value.trim())
+        } else {
+            localStorage.removeItem('studentId')
+        }
+    }
+
+    // Update student portal authentication state.
+    const handleStudentAuthentication = (authenticated) => {
+        setStudentAuthenticated(authenticated)
+
+        localStorage.setItem(
+            'studentPortalAuthenticated',
+            String(authenticated)
+        )
+    }
+
+    const renderPage = () => {
+        switch (activePage) {
+            case 'Admissions':
+                return (
+                    <Admissions
+                        studentId={studentId}
+                        onStudentIdChange={handleStudentIdChange}
+                        onNavigate={handleNavigate}
+                        onBookingSuccess={() => {
+                            handleStudentAuthentication(true)
+                            handleNavigate('My Applications')
+                        }}
+                    />
+                )
+
+            case 'My Applications':
+                return (
+                    <MyApplications
+                        studentId={studentId}
+                        onStudentIdChange={handleStudentIdChange}
+                        authenticated={studentAuthenticated}
+                        onAuthenticationChange={handleStudentAuthentication}
+                    />
+                )
+
+            case 'Manage Classes':
+                return <ManageClasses />
+
+            case 'Overview':
+            default:
+                return <Dashboard onNavigate={handleNavigate} />
+        }
+    }
+
+    return (
+        <Layout
+            activePage={activePage}
+            onNavigate={handleNavigate}
         >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+            {renderPage()}
+        </Layout>
+    )
 }
 
 export default App

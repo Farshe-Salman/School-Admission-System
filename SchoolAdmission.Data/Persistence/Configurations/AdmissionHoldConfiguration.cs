@@ -49,8 +49,8 @@ public class AdmissionHoldConfiguration
             .HasForeignKey(h => h.ClassId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        // Prevent duplicate active applications for the same student and class
-        builder.HasIndex(h => new { h.ClassId, h.StudentId })
+        // Prevent a student from having multiple active applications across all classes
+        builder.HasIndex(h => h.StudentId)
             .IsUnique()
             .HasFilter("\"Status\" IN (1, 2)");
 

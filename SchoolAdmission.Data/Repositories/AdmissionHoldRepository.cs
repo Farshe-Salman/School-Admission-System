@@ -123,4 +123,27 @@ public class AdmissionHoldRepository
             x => (x.HeldSeats, x.ConfirmedSeats));
     }
 
+    public async Task AcquireStudentLockAsync(string studentId)
+    {
+        await _context.Database.ExecuteSqlInterpolatedAsync(
+            $"SELECT pg_advisory_xact_lock(hashtextextended({studentId}, 0))");
+    }
+
+    public async Task<AdmissionHold?> GetActiveByStudentAsync(
+        string studentId,
+        DateTimeOffset nowUtc)
+    {
+        return await _context.Holds
+            .AsNoTracking()
+            .FirstOrDefaultAsync(hold =>
+                hold.StudentId == studentId &&
+                (
+                    hold.Status == HoldStatus.Confirmed ||
+                    (
+                        hold.Status == HoldStatus.Held &&
+                        hold.ExpiresAtUtc > nowUtc
+                    )
+                ));
+    }
+
 }

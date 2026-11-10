@@ -36,7 +36,6 @@ public class AdmissionHoldService : IAdmissionHoldService
     string studentId,
     CancellationToken cancellationToken = default)
     {
-        // 1. Validate input
         if (classId == Guid.Empty)
             throw new ArgumentException("Invalid class ID.");
 
@@ -47,38 +46,40 @@ public class AdmissionHoldService : IAdmissionHoldService
             throw new InvalidOperationException(
                 "Hold duration must be greater than zero.");
 
-        // 2. Get the current UTC time
-        //var nowUtc = _timeProvider.GetUtcNow();
+        var normalizedStudentId = studentId.Trim();
 
-        // 3. Execute all reservation operations in one transaction
         return await _unitOfWork.ExecuteInTransactionAsync(async () =>
         {
-            // 4. Lock the class row to prevent concurrent reservations
+            // 1. Lock this student across all API instances.
+            await _holdRepository.AcquireStudentLockAsync(
+                normalizedStudentId);
+
+            // 2. Lock the requested class to protect seat allocation.
             var admissionClass =
                 await _classRepository.GetByIdForUpdateAsync(classId);
 
             if (admissionClass is null)
-                throw new KeyNotFoundException("Admission class not found.");
+                throw new KeyNotFoundException(
+                    "Admission class not found.");
 
             var nowUtc = _timeProvider.GetUtcNow();
 
-            // 5. Update expired holds for this class
-            await _holdRepository.ExpirePendingHoldsAsync(
-                classId,
-                nowUtc);
+            // 3. Expire all outdated holds.
+            await _holdRepository.ExpireAllPendingHoldsAsync(nowUtc);
 
-            // 6. Check for an existing active application
+            // 4. Check whether this student already has an active
+            // application in ANY class.
             var existingHold =
-                await _holdRepository.GetActiveByStudentAndClassAsync(
-                    classId,
-                    studentId.Trim(),
+                await _holdRepository.GetActiveByStudentAsync(
+                    normalizedStudentId,
                     nowUtc);
 
             if (existingHold is not null)
                 throw new ConflictException(
-                    "You already have an active application for this class.");
+                    "You already have an active application. " +
+                    "You cannot apply for another class.");
 
-            // 7. Count occupied seats
+            // 5. Check available seats.
             var occupiedSeats =
                 await _holdRepository.GetActiveSeatCountAsync(
                     classId,
@@ -88,18 +89,16 @@ public class AdmissionHoldService : IAdmissionHoldService
                 throw new ConflictException(
                     "No seats are available in this class.");
 
-            // 8. Calculate the expiration time
+            // 6. Create the hold.
             var expiresAtUtc = nowUtc.AddSeconds(
                 _holdOptions.DurationSeconds);
 
-            // 9. Create a new hold
             var hold = new AdmissionHold(
                 classId,
-                studentId,
+                normalizedStudentId,
                 nowUtc,
                 expiresAtUtc);
 
-            // 10. Add the hold to EF Core's change tracker
             await _holdRepository.AddAsync(hold);
 
             return hold;

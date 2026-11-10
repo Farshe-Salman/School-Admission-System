@@ -67,7 +67,7 @@ namespace SchoolAdmission.Data.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClassId", "StudentId")
+                    b.HasIndex("StudentId")
                         .IsUnique()
                         .HasFilter("\"Status\" IN (1, 2)");
 

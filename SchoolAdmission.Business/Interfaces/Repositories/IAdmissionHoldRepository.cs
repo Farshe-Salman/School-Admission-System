@@ -27,4 +27,10 @@ public interface IAdmissionHoldRepository
     GetSeatCountsByClassAsync(DateTimeOffset nowUtc);
 
     Task ExpireAllPendingHoldsAsync(DateTimeOffset nowUtc);
+
+    Task AcquireStudentLockAsync(string studentId);
+
+    Task<AdmissionHold?> GetActiveByStudentAsync(
+        string studentId,
+        DateTimeOffset nowUtc);
 }
