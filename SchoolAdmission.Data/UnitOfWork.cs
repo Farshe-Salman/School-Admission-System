@@ -43,7 +43,15 @@ public class UnitOfWork : IUnitOfWork
             }
             catch
             {
-                await transaction.RollbackAsync(CancellationToken.None);
+                try
+                {
+                    await transaction.RollbackAsync(CancellationToken.None);
+                }
+                catch
+                {
+                    // Preserve the original operation exception.
+                }
+
                 throw;
             }
         });

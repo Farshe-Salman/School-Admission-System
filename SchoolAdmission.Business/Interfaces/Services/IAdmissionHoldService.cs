@@ -1,4 +1,5 @@
 ﻿using SchoolAdmission.Domain.Entities;
+using SchoolAdmission.Domain.Enums;
 
 namespace SchoolAdmission.Business.Interfaces.Services;
 
@@ -18,10 +19,10 @@ public interface IAdmissionHoldService
         string studentId,
         CancellationToken cancellationToken = default);
 
-    Task CancelHoldAsync(
-        Guid holdId,
-        string studentId,
-        CancellationToken cancellationToken = default);
+    Task<HoldStatus> CancelHoldAsync(
+    Guid holdId,
+    string studentId,
+    CancellationToken cancellationToken = default);
 
     Task<IReadOnlyList<AdmissionHold>> GetStudentHoldsAsync(
         string studentId,

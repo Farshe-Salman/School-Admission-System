@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.Options;
+using SchoolAdmission.Business.Exceptions;
 using SchoolAdmission.Business.Interfaces;
 using SchoolAdmission.Business.Interfaces.Repositories;
 using SchoolAdmission.Business.Interfaces.Services;
 using SchoolAdmission.Business.Options;
 using SchoolAdmission.Domain.Entities;
+using SchoolAdmission.Domain.Enums;
 
 namespace SchoolAdmission.Business.Services;
 
@@ -46,7 +48,7 @@ public class AdmissionHoldService : IAdmissionHoldService
                 "Hold duration must be greater than zero.");
 
         // 2. Get the current UTC time
-        var nowUtc = _timeProvider.GetUtcNow();
+        //var nowUtc = _timeProvider.GetUtcNow();
 
         // 3. Execute all reservation operations in one transaction
         return await _unitOfWork.ExecuteInTransactionAsync(async () =>
@@ -57,6 +59,8 @@ public class AdmissionHoldService : IAdmissionHoldService
 
             if (admissionClass is null)
                 throw new KeyNotFoundException("Admission class not found.");
+
+            var nowUtc = _timeProvider.GetUtcNow();
 
             // 5. Update expired holds for this class
             await _holdRepository.ExpirePendingHoldsAsync(
@@ -71,7 +75,7 @@ public class AdmissionHoldService : IAdmissionHoldService
                     nowUtc);
 
             if (existingHold is not null)
-                throw new InvalidOperationException(
+                throw new ConflictException(
                     "You already have an active application for this class.");
 
             // 7. Count occupied seats
@@ -81,7 +85,7 @@ public class AdmissionHoldService : IAdmissionHoldService
                     nowUtc);
 
             if (occupiedSeats >= admissionClass.TotalSeats)
-                throw new InvalidOperationException(
+                throw new ConflictException(
                     "No seats are available in this class.");
 
             // 8. Calculate the expiration time
@@ -112,7 +116,7 @@ public class AdmissionHoldService : IAdmissionHoldService
             throw new ArgumentException("Invalid hold ID.");
 
         // 2. Get current UTC time
-        var nowUtc = _timeProvider.GetUtcNow();
+        //var nowUtc = _timeProvider.GetUtcNow();
 
         // 3. Execute inside a transaction
         return await _unitOfWork.ExecuteInTransactionAsync(async () =>
@@ -122,6 +126,8 @@ public class AdmissionHoldService : IAdmissionHoldService
 
             if (hold is null)
                 return null;
+
+            var nowUtc = _timeProvider.GetUtcNow();
 
             // 5. Automatically expire the hold if necessary
             hold.Expire(nowUtc);
@@ -146,7 +152,7 @@ public class AdmissionHoldService : IAdmissionHoldService
         if (string.IsNullOrWhiteSpace(studentId))
             throw new ArgumentException("Student ID is required.");
 
-        var nowUtc = _timeProvider.GetUtcNow();
+        //var nowUtc = _timeProvider.GetUtcNow();
 
         // 2. Execute inside a transaction
         return await _unitOfWork.ExecuteInTransactionAsync(async () =>
@@ -156,6 +162,8 @@ public class AdmissionHoldService : IAdmissionHoldService
 
             if (hold is null)
                 throw new KeyNotFoundException("Hold not found.");
+
+            var nowUtc = _timeProvider.GetUtcNow();
 
             // 4. Verify ownership
             if (!string.Equals(
@@ -167,6 +175,14 @@ public class AdmissionHoldService : IAdmissionHoldService
                     "You are not authorized to confirm this hold.");
             }
 
+            // Return terminal states without attempting confirmation.
+            if (hold.Status is HoldStatus.Confirmed
+                or HoldStatus.Expired
+                or HoldStatus.Cancelled)
+            {
+                return hold;
+            }
+
             // 5. Confirm the hold
             var confirmed = hold.TryConfirm(nowUtc);
 
@@ -174,8 +190,6 @@ public class AdmissionHoldService : IAdmissionHoldService
             if (!confirmed)
             {
                 _holdRepository.Update(hold);
-
-                await _unitOfWork.SaveChangesAsync(cancellationToken);
 
                 return hold;
             }
@@ -188,30 +202,25 @@ public class AdmissionHoldService : IAdmissionHoldService
         }, cancellationToken);
     }
 
-    public async Task CancelHoldAsync(
-    Guid holdId,
-    string studentId,
-    CancellationToken cancellationToken = default)
+
+    public async Task<HoldStatus> CancelHoldAsync(
+        Guid holdId,
+        string studentId,
+        CancellationToken cancellationToken = default)
     {
-        // 1. Validate input
         if (holdId == Guid.Empty)
             throw new ArgumentException("Invalid hold ID.");
 
         if (string.IsNullOrWhiteSpace(studentId))
             throw new ArgumentException("Student ID is required.");
 
-        var nowUtc = _timeProvider.GetUtcNow();
-
-        // 2. Execute inside a transaction
-        await _unitOfWork.ExecuteInTransactionAsync(async () =>
+        return await _unitOfWork.ExecuteInTransactionAsync(async () =>
         {
-            // 3. Retrieve and lock the hold
             var hold = await _holdRepository.GetByIdForUpdateAsync(holdId);
 
             if (hold is null)
                 throw new KeyNotFoundException("Hold not found.");
 
-            // 4. Verify ownership
             if (!string.Equals(
                     hold.StudentId,
                     studentId.Trim(),
@@ -221,22 +230,25 @@ public class AdmissionHoldService : IAdmissionHoldService
                     "You are not authorized to cancel this hold.");
             }
 
-            // 5. Update expiration status if necessary
+            var nowUtc = _timeProvider.GetUtcNow();
+
+            // Update the status if the hold has expired.
             hold.Expire(nowUtc);
 
-            // 6. Cancel the hold if it is still HELD
-            if (hold.Status == SchoolAdmission.Domain.Enums.HoldStatus.Held)
+            // Cancel only HELD reservations.
+            if (hold.Status == HoldStatus.Held)
             {
                 hold.Cancel();
             }
 
-            // 7. Mark the entity for update
+            // Persist the final status.
             _holdRepository.Update(hold);
 
-            return true;
+            return hold.Status;
 
         }, cancellationToken);
     }
+
 
     public async Task<IReadOnlyList<AdmissionHold>> GetStudentHoldsAsync(
     string studentId,

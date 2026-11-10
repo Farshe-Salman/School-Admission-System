@@ -56,11 +56,21 @@ public class HoldsController : ControllerBase
             studentId,
             cancellationToken);
 
-        if (hold.Status != HoldStatus.Confirmed)
+        if (hold.Status == HoldStatus.Expired)
         {
             return Conflict(new
             {
-                message = "This hold cannot be confirmed."
+                title = "Reservation Expired",
+                message = "Your reservation has expired. Please create a new application."
+            });
+        }
+
+        if (hold.Status == HoldStatus.Cancelled)
+        {
+            return Conflict(new
+            {
+                title = "Reservation Cancelled",
+                message = "This reservation has already been cancelled."
             });
         }
 
@@ -72,19 +82,42 @@ public class HoldsController : ControllerBase
     }
 
     // DELETE: /holds/{holdId}
+
     [HttpDelete("{holdId:guid}")]
     public async Task<IActionResult> CancelHold(
         Guid holdId,
         [FromHeader(Name = "X-Student-Id")] string studentId,
         CancellationToken cancellationToken)
     {
-        await _holdService.CancelHoldAsync(
+        var status = await _holdService.CancelHoldAsync(
             holdId,
             studentId,
             cancellationToken);
 
-        return NoContent();
+        return status switch
+        {
+            HoldStatus.Cancelled => NoContent(),
+
+            HoldStatus.Expired => Conflict(new
+            {
+                title = "Reservation Expired",
+                message = "This reservation has expired and cannot be cancelled."
+            }),
+
+            HoldStatus.Confirmed => Conflict(new
+            {
+                title = "Reservation Already Confirmed",
+                message = "This reservation has already been confirmed and cannot be cancelled."
+            }),
+
+            _ => Conflict(new
+            {
+                title = "Cancellation Failed",
+                message = "This reservation cannot be cancelled."
+            })
+        };
     }
+
 
     // GET: /me/holds
     [HttpGet("/me/holds")]
