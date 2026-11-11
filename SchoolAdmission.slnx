@@ -1,6 +1,6 @@
 <Solution>
-  <Project Path="SchoolAdmission.API/SchoolAdmission.API.csproj" />
-  <Project Path="SchoolAdmission.Business/SchoolAdmission.Business.csproj" />
-  <Project Path="SchoolAdmission.Data/SchoolAdmission.Data.csproj" />
-  <Project Path="SchoolAdmission.Domain/SchoolAdmission.Domain.csproj" />
+  <Project Path="backend/SchoolAdmission.API/SchoolAdmission.API.csproj" />
+  <Project Path="backend/SchoolAdmission.Business/SchoolAdmission.Business.csproj" />
+  <Project Path="backend/SchoolAdmission.Data/SchoolAdmission.Data.csproj" />
+  <Project Path="backend/SchoolAdmission.Domain/SchoolAdmission.Domain.csproj" />
 </Solution>

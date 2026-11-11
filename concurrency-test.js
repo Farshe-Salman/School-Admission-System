@@ -22,7 +22,7 @@ const BASE_URL = __ENV.BASE_URL || "https://host.docker.internal:7073";
 const CLASS_ID = __ENV.CLASS_ID;
 
 export default function () {
-  const studentId = `CAPACITY-TEST-${__VU}`;
+  const studentId = `CAP-TEST-${__VU}`;
 
   const response = http.post(`${BASE_URL}/classes/${CLASS_ID}/holds`, null, {
     headers: {
