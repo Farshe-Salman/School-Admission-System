@@ -1,5 +1,7 @@
+﻿using Microsoft.EntityFrameworkCore;
 using SchoolAdmission.Business.Options;
 using SchoolAdmission.Data;
+using SchoolAdmission.Data.Persistence;
 using SchoolAdmission.Business;
 using SchoolAdmission.API.BackgroundServices;
 using SchoolAdmission.API.Mappings;
@@ -17,28 +19,38 @@ builder.Services.AddBusinessServices();
 builder.Services.AddHostedService<ExpiredHoldCleanupService>();
 builder.Services.AddAutoMapper(cfg => { }, typeof(MappingProfile));
 
-// Register services
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 
 builder.Services.AddControllers();
 
-// Register Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// Automatically apply database migrations.
+await using (var scope = app.Services.CreateAsyncScope())
+{
+    var dbContext = scope.ServiceProvider
+        .GetRequiredService<ApplicationDbContext>();
+
+    await dbContext.Database.MigrateAsync();
+}
+
 app.UseExceptionHandler();
 
-// Configure HTTP pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// Docker uses HTTP internally; local development can use HTTPS.
+if (!app.Environment.IsProduction())
+{
+    app.UseHttpsRedirection();
+}
 
 app.UseAuthorization();
 
