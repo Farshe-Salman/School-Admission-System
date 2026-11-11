@@ -1,0 +1,30 @@
+
+{
+  "testName": "School Admission Seat Concurrency Test",
+  "tool": "Grafana k6",
+  "execution": {
+    "virtualUsersConfigured": 500,
+    "completedIterations": 500,
+    "testDurationSeconds": 4.9,
+    "averageRequestDurationSeconds": 2.42,
+    "p95RequestDurationSeconds": 3.92,
+    "maximumObservedVUs": 489
+  },
+  "httpResults": {
+    "totalRequests": 500,
+    "successfulHolds": 120,
+    "rejectedHolds": 380,
+    "unexpectedResponses": 0,
+    "successfulStatusCode": 201,
+    "rejectedStatusCode": 409
+  },
+  "databaseVerification": {
+    "heldSeats": 120,
+    "confirmedSeats": 0,
+    "totalActiveSeats": 120,
+    "classCapacity": 120,
+    "overbookingDetected": false,
+    "verificationMethod": "PostgreSQL aggregate query"
+  },
+  "result": "PASSED"
+}

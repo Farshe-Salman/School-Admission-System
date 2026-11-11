@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="ecc02179-501a-409e-b2d3-215daa184c55" name="Lenovo@DESKTOP-93R0B2T 2026-11-11 17:54:11" runUser="DESKTOP-93R0B2T\Lenovo" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-11-11T17:54:11.0929055+06:00" queuing="2026-11-11T17:54:11.0929059+06:00" start="2026-11-11T17:54:10.2647025+06:00" finish="2026-11-11T17:54:11.1337314+06:00" />
+  <TestSettings name="default" id="b9383631-5809-41a3-b269-f5de3b5dc45a">
+    <Deployment runDeploymentRoot="Lenovo_DESKTOP-93R0B2T_2026-11-11_17_54_11" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="8c8e0162-d6de-41c4-9ab4-d6f2123a5ecf" testId="f3fb851f-2b8f-b151-7b3b-647fd47f606f" testName="SchoolAdmission.Tests.AdmissionHoldTests.CancelHold_WhenHeld_ShouldBecomeCancelled" computerName="DESKTOP-93R0B2T" duration="00:00:00.0003055" startTime="2026-11-11T17:54:11.0304529+06:00" endTime="2026-11-11T17:54:11.0304995+06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8c8e0162-d6de-41c4-9ab4-d6f2123a5ecf" />
+    <UnitTestResult executionId="2ba136a3-e29b-4539-9d2d-17bdce7ebf2d" testId="8352a0fe-30d7-0377-d99b-bb5845a4ba71" testName="SchoolAdmission.Tests.AdmissionClassTests.CreateClass_WithValidData_ShouldCreateClass" computerName="DESKTOP-93R0B2T" duration="00:00:00.0059691" startTime="2026-11-11T17:54:11.0303018+06:00" endTime="2026-11-11T17:54:11.0629675+06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2ba136a3-e29b-4539-9d2d-17bdce7ebf2d" />
+    <UnitTestResult executionId="43ed1926-bcf8-4ce3-b9f2-022e40a9ca64" testId="fae88a9b-7d04-03ca-9b2f-eea2821fb651" testName="SchoolAdmission.Tests.AdmissionHoldTests.ConfirmHold_BeforeExpiration_ShouldBecomeConfirmed" computerName="DESKTOP-93R0B2T" duration="00:00:00.0001319" startTime="2026-11-11T17:54:11.0301460+06:00" endTime="2026-11-11T17:54:11.0303447+06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="43ed1926-bcf8-4ce3-b9f2-022e40a9ca64" />
+    <UnitTestResult executionId="3c55c991-ff47-4ee1-b90f-f07ddc32e731" testId="5500f7a3-ec01-3c56-c938-1fcdda8f24cc" testName="SchoolAdmission.Tests.AdmissionHoldServiceTests.CreateHold_WithValidData_ShouldCreateHeldReservation" computerName="DESKTOP-93R0B2T" duration="00:00:00.0009918" startTime="2026-11-11T17:54:11.0634010+06:00" endTime="2026-11-11T17:54:11.0634464+06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3c55c991-ff47-4ee1-b90f-f07ddc32e731" />
+    <UnitTestResult executionId="3af16003-f0ad-4166-8a8c-6fbd95253479" testId="7e45e068-7455-227f-8922-a7ce407d7839" testName="SchoolAdmission.Tests.AdmissionClassTests.CreateClass_WithZeroSeats_ShouldThrowException" computerName="DESKTOP-93R0B2T" duration="00:00:00.0002703" startTime="2026-11-11T17:54:11.0298049+06:00" endTime="2026-11-11T17:54:11.0301637+06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3af16003-f0ad-4166-8a8c-6fbd95253479" />
+    <UnitTestResult executionId="e07e9656-6da5-4e2d-9028-dcdadaf5754a" testId="e2aa992b-04b9-646d-17c3-510657ccff8b" testName="SchoolAdmission.Tests.AdmissionHoldServiceTests.CreateHold_ShouldNormalizeStudentId" computerName="DESKTOP-93R0B2T" duration="00:00:00.0099146" startTime="2026-11-11T17:54:11.0020547+06:00" endTime="2026-11-11T17:54:11.0298505+06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e07e9656-6da5-4e2d-9028-dcdadaf5754a" />
+    <UnitTestResult executionId="f8d9701d-42eb-4203-b07e-cfa276d5d359" testId="935f345e-9542-c71c-d9bc-3a7aa0f45dff" testName="SchoolAdmission.Tests.AdmissionHoldServiceTests.CreateHold_WithEmptyClassId_ShouldThrowArgumentException" computerName="DESKTOP-93R0B2T" duration="00:00:00.0010605" startTime="2026-11-11T17:54:11.0616153+06:00" endTime="2026-11-11T17:54:11.0616805+06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f8d9701d-42eb-4203-b07e-cfa276d5d359" />
+    <UnitTestResult executionId="e6411736-a7bd-4ec0-8e2b-07cee1ea259e" testId="257c4698-47da-a98b-f016-009047e58698" testName="SchoolAdmission.Tests.AdmissionHoldServiceTests.CreateHold_WhenClassIsFull_ShouldThrowConflict" computerName="DESKTOP-93R0B2T" duration="00:00:00.0012215" startTime="2026-11-11T17:54:11.0618007+06:00" endTime="2026-11-11T17:54:11.0627640+06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e6411736-a7bd-4ec0-8e2b-07cee1ea259e" />
+    <UnitTestResult executionId="5c863adb-78d3-4457-acbb-6368fb39d748" testId="564c9823-31a7-9d67-589b-90b343138f83" testName="SchoolAdmission.Tests.AdmissionHoldServiceTests.CreateHold_WithEmptyStudentId_ShouldThrowArgumentException" computerName="DESKTOP-93R0B2T" duration="00:00:00.0008400" startTime="2026-11-11T17:54:11.0629160+06:00" endTime="2026-11-11T17:54:11.0630568+06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5c863adb-78d3-4457-acbb-6368fb39d748" />
+    <UnitTestResult executionId="01f5851d-e280-4cfd-b79b-4244cdc5c6e4" testId="628322a3-f21f-b4bc-c706-19bd6bc1d9c7" testName="SchoolAdmission.Tests.AdmissionHoldTests.CreateHold_WithValidData_ShouldStartAsHeld" computerName="DESKTOP-93R0B2T" duration="00:00:00.0002124" startTime="2026-11-11T17:54:11.0297147+06:00" endTime="2026-11-11T17:54:11.0300254+06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="01f5851d-e280-4cfd-b79b-4244cdc5c6e4" />
+    <UnitTestResult executionId="58dc050b-9c8c-4c3e-9459-452cae789602" testId="f6869c44-c9d5-3d5d-4468-0360598c7c32" testName="SchoolAdmission.Tests.AdmissionHoldServiceTests.CreateHold_WhenStudentHasActiveApplication_ShouldThrowConflict" computerName="DESKTOP-93R0B2T" duration="00:00:00.0007986" startTime="2026-11-11T17:54:11.0632415+06:00" endTime="2026-11-11T17:54:11.0632891+06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="58dc050b-9c8c-4c3e-9459-452cae789602" />
+    <UnitTestResult executionId="03546978-9372-41cc-97f8-98b4320e515e" testId="13913fac-78a0-5c2d-a7a4-ef3d349910b2" testName="SchoolAdmission.Tests.AdmissionHoldServiceTests.CreateHold_WhenClassDoesNotExist_ShouldThrowNotFound" computerName="DESKTOP-93R0B2T" duration="00:00:00.0026457" startTime="2026-11-11T17:54:11.0299818+06:00" endTime="2026-11-11T17:54:11.0614448+06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="03546978-9372-41cc-97f8-98b4320e515e" />
+    <UnitTestResult executionId="be0d4aa6-3fb3-49d4-af88-16f1c79ffc1c" testId="330bef29-0d90-5a3c-e6c0-5c5fb6cbdc58" testName="SchoolAdmission.Tests.AdmissionClassTests.CreateClass_WithEmptyName_ShouldThrowException" computerName="DESKTOP-93R0B2T" duration="00:00:00.0053968" startTime="2026-11-11T17:54:11.0002635+06:00" endTime="2026-11-11T17:54:11.0155510+06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="be0d4aa6-3fb3-49d4-af88-16f1c79ffc1c" />
+    <UnitTestResult executionId="cb858fbf-a7b3-4ea5-aae4-e5a0c468607b" testId="54e85f89-8c02-a14c-790b-6b7fbb83fb6b" testName="SchoolAdmission.Tests.AdmissionHoldTests.ConfirmHold_AfterExpiration_ShouldBecomeExpired" computerName="DESKTOP-93R0B2T" duration="00:00:00.0003187" startTime="2026-11-11T17:54:11.0601070+06:00" endTime="2026-11-11T17:54:11.0601812+06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cb858fbf-a7b3-4ea5-aae4-e5a0c468607b" />
+    <UnitTestResult executionId="8c372eda-2209-444d-ad8b-cbe8c943eefd" testId="71f2050c-8909-4e93-b264-3ee24d6fa84c" testName="SchoolAdmission.Tests.AdmissionHoldTests.ConfirmHold_WhenAlreadyConfirmed_ShouldBeIdempotent" computerName="DESKTOP-93R0B2T" duration="00:00:00.0079594" startTime="2026-11-11T17:54:11.0020052+06:00" endTime="2026-11-11T17:54:11.0206500+06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8c372eda-2209-444d-ad8b-cbe8c943eefd" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="SchoolAdmission.Tests.AdmissionHoldTests.ConfirmHold_AfterExpiration_ShouldBecomeExpired" storage="d:\onnorokom projukti\schooladmission\backend\schooladmission.tests\bin\debug\net10.0\schooladmission.tests.dll" id="54e85f89-8c02-a14c-790b-6b7fbb83fb6b">
+      <Execution id="cb858fbf-a7b3-4ea5-aae4-e5a0c468607b" />
+      <TestMethod codeBase="D:\Onnorokom Projukti\SchoolAdmission\backend\SchoolAdmission.Tests\bin\Debug\net10.0\SchoolAdmission.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SchoolAdmission.Tests.AdmissionHoldTests" name="ConfirmHold_AfterExpiration_ShouldBecomeExpired" />
+    </UnitTest>
+    <UnitTest name="SchoolAdmission.Tests.AdmissionClassTests.CreateClass_WithZeroSeats_ShouldThrowException" storage="d:\onnorokom projukti\schooladmission\backend\schooladmission.tests\bin\debug\net10.0\schooladmission.tests.dll" id="7e45e068-7455-227f-8922-a7ce407d7839">
+      <Execution id="3af16003-f0ad-4166-8a8c-6fbd95253479" />
+      <TestMethod codeBase="D:\Onnorokom Projukti\SchoolAdmission\backend\SchoolAdmission.Tests\bin\Debug\net10.0\SchoolAdmission.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SchoolAdmission.Tests.AdmissionClassTests" name="CreateClass_WithZeroSeats_ShouldThrowException" />
+    </UnitTest>
+    <UnitTest name="SchoolAdmission.Tests.AdmissionHoldServiceTests.CreateHold_WithEmptyClassId_ShouldThrowArgumentException" storage="d:\onnorokom projukti\schooladmission\backend\schooladmission.tests\bin\debug\net10.0\schooladmission.tests.dll" id="935f345e-9542-c71c-d9bc-3a7aa0f45dff">
+      <Execution id="f8d9701d-42eb-4203-b07e-cfa276d5d359" />
+      <TestMethod codeBase="D:\Onnorokom Projukti\SchoolAdmission\backend\SchoolAdmission.Tests\bin\Debug\net10.0\SchoolAdmission.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SchoolAdmission.Tests.AdmissionHoldServiceTests" name="CreateHold_WithEmptyClassId_ShouldThrowArgumentException" />
+    </UnitTest>
+    <UnitTest name="SchoolAdmission.Tests.AdmissionHoldTests.CreateHold_WithValidData_ShouldStartAsHeld" storage="d:\onnorokom projukti\schooladmission\backend\schooladmission.tests\bin\debug\net10.0\schooladmission.tests.dll" id="628322a3-f21f-b4bc-c706-19bd6bc1d9c7">
+      <Execution id="01f5851d-e280-4cfd-b79b-4244cdc5c6e4" />
+      <TestMethod codeBase="D:\Onnorokom Projukti\SchoolAdmission\backend\SchoolAdmission.Tests\bin\Debug\net10.0\SchoolAdmission.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SchoolAdmission.Tests.AdmissionHoldTests" name="CreateHold_WithValidData_ShouldStartAsHeld" />
+    </UnitTest>
+    <UnitTest name="SchoolAdmission.Tests.AdmissionHoldTests.ConfirmHold_WhenAlreadyConfirmed_ShouldBeIdempotent" storage="d:\onnorokom projukti\schooladmission\backend\schooladmission.tests\bin\debug\net10.0\schooladmission.tests.dll" id="71f2050c-8909-4e93-b264-3ee24d6fa84c">
+      <Execution id="8c372eda-2209-444d-ad8b-cbe8c943eefd" />
+      <TestMethod codeBase="D:\Onnorokom Projukti\SchoolAdmission\backend\SchoolAdmission.Tests\bin\Debug\net10.0\SchoolAdmission.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SchoolAdmission.Tests.AdmissionHoldTests" name="ConfirmHold_WhenAlreadyConfirmed_ShouldBeIdempotent" />
+    </UnitTest>
+    <UnitTest name="SchoolAdmission.Tests.AdmissionHoldServiceTests.CreateHold_WithEmptyStudentId_ShouldThrowArgumentException" storage="d:\onnorokom projukti\schooladmission\backend\schooladmission.tests\bin\debug\net10.0\schooladmission.tests.dll" id="564c9823-31a7-9d67-589b-90b343138f83">
+      <Execution id="5c863adb-78d3-4457-acbb-6368fb39d748" />
+      <TestMethod codeBase="D:\Onnorokom Projukti\SchoolAdmission\backend\SchoolAdmission.Tests\bin\Debug\net10.0\SchoolAdmission.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SchoolAdmission.Tests.AdmissionHoldServiceTests" name="CreateHold_WithEmptyStudentId_ShouldThrowArgumentException" />
+    </UnitTest>
+    <UnitTest name="SchoolAdmission.Tests.AdmissionClassTests.CreateClass_WithValidData_ShouldCreateClass" storage="d:\onnorokom projukti\schooladmission\backend\schooladmission.tests\bin\debug\net10.0\schooladmission.tests.dll" id="8352a0fe-30d7-0377-d99b-bb5845a4ba71">
+      <Execution id="2ba136a3-e29b-4539-9d2d-17bdce7ebf2d" />
+      <TestMethod codeBase="D:\Onnorokom Projukti\SchoolAdmission\backend\SchoolAdmission.Tests\bin\Debug\net10.0\SchoolAdmission.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SchoolAdmission.Tests.AdmissionClassTests" name="CreateClass_WithValidData_ShouldCreateClass" />
+    </UnitTest>
+    <UnitTest name="SchoolAdmission.Tests.AdmissionHoldServiceTests.CreateHold_WhenClassIsFull_ShouldThrowConflict" storage="d:\onnorokom projukti\schooladmission\backend\schooladmission.tests\bin\debug\net10.0\schooladmission.tests.dll" id="257c4698-47da-a98b-f016-009047e58698">
+      <Execution id="e6411736-a7bd-4ec0-8e2b-07cee1ea259e" />
+      <TestMethod codeBase="D:\Onnorokom Projukti\SchoolAdmission\backend\SchoolAdmission.Tests\bin\Debug\net10.0\SchoolAdmission.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SchoolAdmission.Tests.AdmissionHoldServiceTests" name="CreateHold_WhenClassIsFull_ShouldThrowConflict" />
+    </UnitTest>
+    <UnitTest name="SchoolAdmission.Tests.AdmissionHoldTests.CancelHold_WhenHeld_ShouldBecomeCancelled" storage="d:\onnorokom projukti\schooladmission\backend\schooladmission.tests\bin\debug\net10.0\schooladmission.tests.dll" id="f3fb851f-2b8f-b151-7b3b-647fd47f606f">
+      <Execution id="8c8e0162-d6de-41c4-9ab4-d6f2123a5ecf" />
+      <TestMethod codeBase="D:\Onnorokom Projukti\SchoolAdmission\backend\SchoolAdmission.Tests\bin\Debug\net10.0\SchoolAdmission.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SchoolAdmission.Tests.AdmissionHoldTests" name="CancelHold_WhenHeld_ShouldBecomeCancelled" />
+    </UnitTest>
+    <UnitTest name="SchoolAdmission.Tests.AdmissionHoldServiceTests.CreateHold_ShouldNormalizeStudentId" storage="d:\onnorokom projukti\schooladmission\backend\schooladmission.tests\bin\debug\net10.0\schooladmission.tests.dll" id="e2aa992b-04b9-646d-17c3-510657ccff8b">
+      <Execution id="e07e9656-6da5-4e2d-9028-dcdadaf5754a" />
+      <TestMethod codeBase="D:\Onnorokom Projukti\SchoolAdmission\backend\SchoolAdmission.Tests\bin\Debug\net10.0\SchoolAdmission.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SchoolAdmission.Tests.AdmissionHoldServiceTests" name="CreateHold_ShouldNormalizeStudentId" />
+    </UnitTest>
+    <UnitTest name="SchoolAdmission.Tests.AdmissionHoldServiceTests.CreateHold_WithValidData_ShouldCreateHeldReservation" storage="d:\onnorokom projukti\schooladmission\backend\schooladmission.tests\bin\debug\net10.0\schooladmission.tests.dll" id="5500f7a3-ec01-3c56-c938-1fcdda8f24cc">
+      <Execution id="3c55c991-ff47-4ee1-b90f-f07ddc32e731" />
+      <TestMethod codeBase="D:\Onnorokom Projukti\SchoolAdmission\backend\SchoolAdmission.Tests\bin\Debug\net10.0\SchoolAdmission.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SchoolAdmission.Tests.AdmissionHoldServiceTests" name="CreateHold_WithValidData_ShouldCreateHeldReservation" />
+    </UnitTest>
+    <UnitTest name="SchoolAdmission.Tests.AdmissionHoldServiceTests.CreateHold_WhenClassDoesNotExist_ShouldThrowNotFound" storage="d:\onnorokom projukti\schooladmission\backend\schooladmission.tests\bin\debug\net10.0\schooladmission.tests.dll" id="13913fac-78a0-5c2d-a7a4-ef3d349910b2">
+      <Execution id="03546978-9372-41cc-97f8-98b4320e515e" />
+      <TestMethod codeBase="D:\Onnorokom Projukti\SchoolAdmission\backend\SchoolAdmission.Tests\bin\Debug\net10.0\SchoolAdmission.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SchoolAdmission.Tests.AdmissionHoldServiceTests" name="CreateHold_WhenClassDoesNotExist_ShouldThrowNotFound" />
+    </UnitTest>
+    <UnitTest name="SchoolAdmission.Tests.AdmissionClassTests.CreateClass_WithEmptyName_ShouldThrowException" storage="d:\onnorokom projukti\schooladmission\backend\schooladmission.tests\bin\debug\net10.0\schooladmission.tests.dll" id="330bef29-0d90-5a3c-e6c0-5c5fb6cbdc58">
+      <Execution id="be0d4aa6-3fb3-49d4-af88-16f1c79ffc1c" />
+      <TestMethod codeBase="D:\Onnorokom Projukti\SchoolAdmission\backend\SchoolAdmission.Tests\bin\Debug\net10.0\SchoolAdmission.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SchoolAdmission.Tests.AdmissionClassTests" name="CreateClass_WithEmptyName_ShouldThrowException" />
+    </UnitTest>
+    <UnitTest name="SchoolAdmission.Tests.AdmissionHoldServiceTests.CreateHold_WhenStudentHasActiveApplication_ShouldThrowConflict" storage="d:\onnorokom projukti\schooladmission\backend\schooladmission.tests\bin\debug\net10.0\schooladmission.tests.dll" id="f6869c44-c9d5-3d5d-4468-0360598c7c32">
+      <Execution id="58dc050b-9c8c-4c3e-9459-452cae789602" />
+      <TestMethod codeBase="D:\Onnorokom Projukti\SchoolAdmission\backend\SchoolAdmission.Tests\bin\Debug\net10.0\SchoolAdmission.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SchoolAdmission.Tests.AdmissionHoldServiceTests" name="CreateHold_WhenStudentHasActiveApplication_ShouldThrowConflict" />
+    </UnitTest>
+    <UnitTest name="SchoolAdmission.Tests.AdmissionHoldTests.ConfirmHold_BeforeExpiration_ShouldBecomeConfirmed" storage="d:\onnorokom projukti\schooladmission\backend\schooladmission.tests\bin\debug\net10.0\schooladmission.tests.dll" id="fae88a9b-7d04-03ca-9b2f-eea2821fb651">
+      <Execution id="43ed1926-bcf8-4ce3-b9f2-022e40a9ca64" />
+      <TestMethod codeBase="D:\Onnorokom Projukti\SchoolAdmission\backend\SchoolAdmission.Tests\bin\Debug\net10.0\SchoolAdmission.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="SchoolAdmission.Tests.AdmissionHoldTests" name="ConfirmHold_BeforeExpiration_ShouldBecomeConfirmed" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="f3fb851f-2b8f-b151-7b3b-647fd47f606f" executionId="8c8e0162-d6de-41c4-9ab4-d6f2123a5ecf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8352a0fe-30d7-0377-d99b-bb5845a4ba71" executionId="2ba136a3-e29b-4539-9d2d-17bdce7ebf2d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fae88a9b-7d04-03ca-9b2f-eea2821fb651" executionId="43ed1926-bcf8-4ce3-b9f2-022e40a9ca64" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5500f7a3-ec01-3c56-c938-1fcdda8f24cc" executionId="3c55c991-ff47-4ee1-b90f-f07ddc32e731" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7e45e068-7455-227f-8922-a7ce407d7839" executionId="3af16003-f0ad-4166-8a8c-6fbd95253479" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e2aa992b-04b9-646d-17c3-510657ccff8b" executionId="e07e9656-6da5-4e2d-9028-dcdadaf5754a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="935f345e-9542-c71c-d9bc-3a7aa0f45dff" executionId="f8d9701d-42eb-4203-b07e-cfa276d5d359" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="257c4698-47da-a98b-f016-009047e58698" executionId="e6411736-a7bd-4ec0-8e2b-07cee1ea259e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="564c9823-31a7-9d67-589b-90b343138f83" executionId="5c863adb-78d3-4457-acbb-6368fb39d748" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="628322a3-f21f-b4bc-c706-19bd6bc1d9c7" executionId="01f5851d-e280-4cfd-b79b-4244cdc5c6e4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f6869c44-c9d5-3d5d-4468-0360598c7c32" executionId="58dc050b-9c8c-4c3e-9459-452cae789602" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="13913fac-78a0-5c2d-a7a4-ef3d349910b2" executionId="03546978-9372-41cc-97f8-98b4320e515e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="330bef29-0d90-5a3c-e6c0-5c5fb6cbdc58" executionId="be0d4aa6-3fb3-49d4-af88-16f1c79ffc1c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="54e85f89-8c02-a14c-790b-6b7fbb83fb6b" executionId="cb858fbf-a7b3-4ea5-aae4-e5a0c468607b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="71f2050c-8909-4e93-b264-3ee24d6fa84c" executionId="8c372eda-2209-444d-ad8b-cbe8c943eefd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="15" executed="15" passed="15" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.4+50e68bbb8b (64-bit .NET 10.0.14)&#xD;
+[xUnit.net 00:00:00.10]   Discovering: SchoolAdmission.Tests&#xD;
+[xUnit.net 00:00:00.16]   Discovered:  SchoolAdmission.Tests&#xD;
+[xUnit.net 00:00:00.19]   Starting:    SchoolAdmission.Tests&#xD;
+[xUnit.net 00:00:00.28]   Finished:    SchoolAdmission.Tests&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>

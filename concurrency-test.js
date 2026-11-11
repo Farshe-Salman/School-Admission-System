@@ -5,7 +5,7 @@ export const options = {
   scenarios: {
     seat_race: {
       executor: "per-vu-iterations",
-      vus: 120,
+      vus: 500,
       iterations: 1,
       maxDuration: "2m",
       gracefulStop: "0s",
@@ -22,7 +22,7 @@ const BASE_URL = __ENV.BASE_URL || "https://host.docker.internal:7073";
 const CLASS_ID = __ENV.CLASS_ID;
 
 export default function () {
-  const studentId = `CAP-TEST-${__VU}`;
+  const studentId = `CAPACITY-TESTING-${__VU}`;
 
   const response = http.post(`${BASE_URL}/classes/${CLASS_ID}/holds`, null, {
     headers: {
